@@ -1,0 +1,34 @@
+{
+    "name": "Schoolgy UI Refreshed",
+    "description": "An extension to improve the UI and UX of PowerSchool's Schoolgy website",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "schoology_refreshed.png"
+    },
+    "permissions": [
+        "userScripts",
+        "scripting",
+        "tabs"
+    ],
+    "background": {
+        "service_worker": "service_worker.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.schoology.com/*"
+            ],
+            "css": [
+                "refreshed.css"
+            ],
+            "js": [
+                "injected.js"
+            ]
+        }
+    ],
+    "host_permissions": [
+        "https://*.schoology.com/*"
+    ]
+}
