@@ -12,7 +12,7 @@ const OptionsController = {
         "global_enable": "true"
     },
 
-    optionsParentDiv: document.querySelector("#options"),
+    optionsParentDiv: null,
     IsOptionsPage: () => {
         return OptionsController.optionsParentDiv != null;
     },
@@ -110,6 +110,13 @@ const OptionsController = {
         if (result.options != null)
         {
             OptionsController.loadedOptionValues = JSON.parse(result.options);
+        }
+    },
+
+    Init: () => {
+        if (document != null)
+        {
+            OptionsController.optionsParentDiv = document.querySelector("#options");
         }
     }
 };
