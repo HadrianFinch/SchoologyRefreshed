@@ -4,16 +4,18 @@
     "version": "1.0",
     "manifest_version": 3,
     "action": {
-        "default_popup": "popup.html",
-        "default_icon": "schoology_refreshed.png"
+        "default_popup": "html/popup.html",
+        "default_icon": "images/schoology_refreshed.png"
     },
     "permissions": [
         "userScripts",
         "scripting",
-        "tabs"
+        "tabs",
+        "storage"
     ],
+    "options_page": "html/options.html",
     "background": {
-        "service_worker": "service_worker.js"
+        "service_worker": "scripts/service_worker.js"
     },
     "content_scripts": [
         {
@@ -21,10 +23,10 @@
                 "https://*.schoology.com/*"
             ],
             "css": [
-                "generated.css"
+                "html/generated/main.css"
             ],
             "js": [
-                "injected.js"
+                "scripts/injected.js"
             ]
         }
     ],
