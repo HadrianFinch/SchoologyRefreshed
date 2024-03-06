@@ -2,4 +2,16 @@
   border-radius: 5pt;
 }
 
+#site-navigation-breadcrumbs,
+#site-navigation-breadcrumbs div,
+#breadcrumbs > div > nav {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+#site-navigation-footer > div > footer {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
 /*# sourceMappingURL=rounded_corners.css.map */

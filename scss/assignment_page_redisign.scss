@@ -1,0 +1,20 @@
+@import 'base';
+
+#center-top > h2.page-title
+{
+    margin-top: 45px;
+}
+#center > #main > #main-inner
+{
+    margin-top: 35px;
+    padding: 0 !important;
+}
+
+.link-wrapper,
+.app-link-wrapper {
+    .course-materials-left-menu
+    {
+        @extend %color_border;
+        border-right: none !important;
+    }
+}

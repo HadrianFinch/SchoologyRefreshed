@@ -1,0 +1,57 @@
+@import 'base';
+
+#taught-courses-switcher,
+.cancel-btn,
+.form-submit,
+.link-btn,
+.action-links-wrapper > div,
+.notification-settings-wrapper {
+    @extend %button;
+}
+
+
+.submit-span-wrapper {
+    background-color: #00000000 !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+
+#taught-courses-switcher,
+.notification-settings-wrapper {
+    min-width: 90px;
+
+    >a.ui-selectmenu,
+    >a.notification-settings {
+        opacity: 0;
+        position: absolute !important;
+        // background-color: red;
+        width: calc(100% + 0px) !important;
+        height: 20px !important;
+        left: 0px;
+        top: 0px;
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: #00000000 !important;
+    }
+}
+
+.notification-settings-wrapper>a>span {
+    display: none;
+}
+
+#taught-courses-switcher::before {
+    content: "Switch Class";
+}
+
+.notification-settings-wrapper::before {
+    content: "Notifications";
+}
+
+.ui-selectmenu-open,
+.action-links,
+.inline-popup-wrapper,
+.course-materials-dropdown {
+    @extend %popup;
+}

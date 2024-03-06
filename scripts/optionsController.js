@@ -122,7 +122,14 @@ const OptionsController = {
         await OptionsController.LoadOptions();
         
         OptionsController.RegisterOption({id: "global_enable", name: "Enable Schoology UI Refreshed"}, OptionsController.OptionType.BOOLEAN);
+        // OptionsController.RegisterOption({id: "card_shadow", name: "Shadow on cards"}, OptionsController.OptionType.BOOLEAN);
+        
         OptionsController.RegisterOption({id: "rounded_corners", name: "Rounded Corners"}, OptionsController.OptionType.BOOLEAN);
-        OptionsController.RegisterOption({id: "card_shadow", name: "Shadow on cards"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "redisigned_homepage", name: "Redisigned Homepage"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "redisigned_course_page", name: "Redisigned Course Page"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "fixed_navbar_logo_alignment", name: "Fix navbar logo alignment"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "fixed_powerschool_colors", name: "Fix off-brand colors"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "hide_footer", name: "Remove useless footer from all pages"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "unified_controls", name: "Make all buttons, dropdowns, menus, etc. have the same look and feel"}, OptionsController.OptionType.BOOLEAN);
     }
 };

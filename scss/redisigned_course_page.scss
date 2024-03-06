@@ -1,0 +1,53 @@
+@import "base";
+@import "fixed_page_headder";
+
+#container {
+    margin-top: var(--padding-size) !important;
+}
+
+
+
+#sidebar-left {
+    // margin-top: var(--padding-size) !important;
+    position: sticky !important;
+    left: 0 !important;
+    top: var(--padding-size);
+    transform: translate(calc(-2 * var(--padding-size)), 0);
+    padding-left: var(--padding-size);
+    // border-top-left-radius: 0 !important;
+    // border-bottom-left-radius: 0 !important;
+
+    @extend %fg_elm;
+}
+
+.link-wrapper,
+.app-link-wrapper {
+    >a {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        margin-right: 1px !important;
+    }
+
+    >a.active,
+    .course-materials-left-menu
+    {
+        @extend %color_border;
+        border-right: none !important;
+    }
+}
+
+#main-inner {
+    padding: 0 calc(var(--padding-size) / 2) 0 !important;
+}
+
+
+#main-content-wrapper {
+    @extend %fg_elm;
+    position: relative !important;
+    top: calc(80px + var(--padding-size)) !important;
+    padding: var(--padding-size) !important;
+    height: fit-content;
+    margin-bottom: 80px !important;
+
+    // margin-top: var(--padding-size) !important;
+}

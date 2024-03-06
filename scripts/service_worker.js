@@ -7,20 +7,25 @@ try {
 const Modules = {};
 
 const ModuleController = {
-    RegisterModule: (identifier, urls, useCss, useJS) => {
+    RegisterModule: async (identifier, urls, excludeUrls, useCss, useJS) => {
+        var scripts = await chrome.scripting.getRegisteredContentScripts();
+        const scriptIds = scripts.map(script => script.id);
+
         const module = {
             identifier: identifier,
             cssFile: "/html/generated/" + identifier.id + ".css",
-            jsFile: "/script/" + identifier.id + ".css",
+            jsFile: "/scripts/" + identifier.id + ".js",
 
-            enabled: false,
+            enabled: scriptIds.includes(identifier.id),
 
             Enable: async () => {
                 await chrome.scripting.registerContentScripts([{
                     id: identifier.id,
-                    matches: ["https://*.schoology.com/" + urls],
+                    matches: urls.map((e) => "https://*.schoology.com/" + e),
+                    excludeMatches: excludeUrls.map((e) => "https://*.schoology.com/" + e), 
                     js: useJS ? [module.jsFile] : null,
                     css: useCss ? [module.cssFile] : null,
+                    runAt:'document_end'
                 }]);
 
                 module.enabled = true;
@@ -30,8 +35,9 @@ const ModuleController = {
                 module.enabled = false;
             },
 
-            EnableFromOptions: async () => {
-                if (Options[identifier.id].get())
+            EnableFromOptions: async (overrideId) => {
+                const id = overrideId != null ? overrideId.id : identifier.id;
+                if (Options[id].get())
                 {
                     if (!module.enabled)
                     {
@@ -61,13 +67,42 @@ const ModuleController = {
                 element.EnableFromOptions();
             }
         }
+    },
+    DebugRestartAll: async () =>
+    {
+        try {
+            const scripts = await chrome.scripting.getRegisteredContentScripts();
+            const scriptIds = scripts.map(script => script.id);
+
+            if (scriptIds.length > 0)
+            {
+                return chrome.scripting.unregisterContentScripts(scriptIds);
+            }
+            
+        } catch (error) {
+            const message = [
+                "An unexpected error occurred while",
+                "unregistering dynamic content scripts.",
+            ].join(" ");
+            throw new Error(error, {cause : error});
+        }
     }
 };
 
 (async () => {
     await OptionsController.Init();
 
-    ModuleController.RegisterModule(Options.rounded_corners.id, "*", true, false).EnableFromOptions(Options.rounded_corners);
+    await ModuleController.DebugRestartAll();
+
+    (await ModuleController.RegisterModule(Options.rounded_corners.id, ["*"], [], true, false)).EnableFromOptions();
+    (await ModuleController.RegisterModule(Options.redisigned_homepage.id, ["home*"], [], true, false)).EnableFromOptions();
+    (await ModuleController.RegisterModule(Options.redisigned_course_page.id, ["course*", "assignment*"], ["*/assessments/*"], true, true)).EnableFromOptions();
+    (await ModuleController.RegisterModule({id: "assignment_page_redisign"}, ["assignment*"], [], true, false)).EnableFromOptions(Options.redisigned_course_page.id);
+    (await ModuleController.RegisterModule(Options.fixed_navbar_logo_alignment.id, ["*"], [], true, false)).EnableFromOptions();
+    (await ModuleController.RegisterModule(Options.fixed_powerschool_colors.id, ["*"], [], true, false)).EnableFromOptions();
+    (await ModuleController.RegisterModule(Options.hide_footer.id, ["*"], [], true, false)).EnableFromOptions();
+    (await ModuleController.RegisterModule(Options.unified_controls.id, ["*"], [], true, false)).EnableFromOptions();
+
 })();
 
 

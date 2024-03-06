@@ -6,6 +6,12 @@
     "action": {
         "default_icon": "images/schoology_refreshed.png"
     },
+    "icons": {
+        "16": "images/schoology_refreshed.png",
+        "32": "images/schoology_refreshed.png",
+        "48": "images/schoology_refreshed.png",
+        "128": "images/schoology_refreshed.png"
+    },
     "permissions": [
         "userScripts",
         "scripting",
@@ -17,17 +23,6 @@
         "service_worker": "scripts/service_worker.js"
     },
     "content_scripts": [
-        {
-            "matches": [
-                "https://*.schoology.com/*"
-            ],
-            "css": [
-                "html/generated/main.css"
-            ],
-            "js": [
-                "scripts/injected.js"
-            ]
-        }
     ],
     "host_permissions": [
         "https://*.schoology.com/*"
