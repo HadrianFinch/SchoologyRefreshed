@@ -138,10 +138,6 @@
 //     display: none;
 // }
 
-*:not(span):not(#header):not(svg) {
-    border-radius: 5pt;
-}
-
 #header>header>nav {
     margin-left: 0;
 }
@@ -291,12 +287,13 @@ body:not(.is-home) #main-content-wrapper {
 }
 
 body:not(.is-home) #center-top {
-    padding: var(--padding-size);
+    padding: var(--padding-size) !important;
     width: calc(100%);
     top: calc(-80px - (var(--padding-size) * 2)) !important;
     left: calc(-1 * var(--padding-size)) !important;
     position: absolute !important;
     height: 40px;
+    margin: 0 !important;
     @extend %fg_elm;
 
     .page-title a {

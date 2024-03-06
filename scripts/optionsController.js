@@ -113,18 +113,16 @@ const OptionsController = {
         }
     },
 
-    Init: () => {
-        if (document != null)
+    Init: async () => {
+        if (typeof document !== 'undefined')
         {
             OptionsController.optionsParentDiv = document.querySelector("#options");
         }
+        
+        await OptionsController.LoadOptions();
+        
+        OptionsController.RegisterOption({id: "global_enable", name: "Enable Schoology UI Refreshed"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "rounded_corners", name: "Rounded Corners"}, OptionsController.OptionType.BOOLEAN);
+        OptionsController.RegisterOption({id: "card_shadow", name: "Shadow on cards"}, OptionsController.OptionType.BOOLEAN);
     }
 };
-
-(async () => {
-    OptionsController.RegisterOption({id: "global_enable", name: "Enable Schoology UI Refreshed"}, OptionsController.OptionType.BOOLEAN);
-    OptionsController.RegisterOption({id: "rounded_corners", name: "Rounded Corners"}, OptionsController.OptionType.BOOLEAN);
-    OptionsController.RegisterOption({id: "card_shadow", name: "Shadow on cards"}, OptionsController.OptionType.BOOLEAN);
-    
-    await OptionsController.LoadOptions();
-})();
