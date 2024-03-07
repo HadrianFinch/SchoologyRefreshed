@@ -26,5 +26,12 @@
     ],
     "host_permissions": [
         "https://*.schoology.com/*"
-    ]
+    ],
+    "web_accessible_resources": [{
+        "resources": [
+            "scss/fontawesome/webfonts/*.ttf",
+            "scss/fontawesome/webfonts/*.woff2"
+        ],
+        "matches": ["https://*.schoology.com/*"]
+    }]
 }

@@ -28,8 +28,7 @@
         margin-right: 1px !important;
     }
 
-    >a.active,
-    .course-materials-left-menu
+    >a.active
     {
         @extend %color_border;
         border-right: none !important;
